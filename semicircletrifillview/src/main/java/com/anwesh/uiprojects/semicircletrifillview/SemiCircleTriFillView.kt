@@ -198,5 +198,28 @@ class SemiCircleTriFillView(ctx : Context) : View(ctx) {
                 curr.startUpdating(cb)
             }
         }
+
+        data class Renderer(var view : SemiCircleTriFillView) {
+
+            private val animator : Animator = Animator(view)
+            private val sctf : SemiCircleTriFill = SemiCircleTriFill(0)
+            private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+            fun render(canvas : Canvas) {
+                canvas.drawColor(backColor)
+                sctf.draw(canvas, paint)
+                animator.animate {
+                    sctf.update {
+                        animator.stop()
+                    }
+                }
+            }
+
+            fun handleTap() {
+                sctf.startUpdating {
+                    animator.start()
+                }
+            }
+        }
     }
 }
