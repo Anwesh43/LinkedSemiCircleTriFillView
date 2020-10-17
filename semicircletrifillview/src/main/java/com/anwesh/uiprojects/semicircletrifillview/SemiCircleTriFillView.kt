@@ -223,4 +223,13 @@ class SemiCircleTriFillView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SemiCircleTriFillView {
+            val view : SemiCircleTriFillView = SemiCircleTriFillView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
